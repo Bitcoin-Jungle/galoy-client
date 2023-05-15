@@ -39,7 +39,7 @@ export const getRequest =
 
       const response = await fetch(url.toString(), {
         method: "get",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json",
           ...headers,
@@ -61,7 +61,7 @@ export const postRequest =
       const response = await fetch(path, {
         method: "post",
         body: JSON.stringify(variables),
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json",
           "authorization": authToken ? `Bearer ${authToken}` : "",
@@ -113,7 +113,7 @@ export const createGaloyClient: CreateGaloyClientFunction =
       return forward(operation)
     })
 
-    const httpLink = new HttpLink({ uri: config.graphqlUrl, credentials: "include" })
+    const httpLink = new HttpLink({ uri: config.graphqlUrl, })
 
     const wsLink = new WebSocketLink({
       uri: config.graphqlSubscriptionUrl,
@@ -123,7 +123,7 @@ export const createGaloyClient: CreateGaloyClientFunction =
         lazy: true,
         connectionParams: async () => {
           return {
-            credentials: "include",
+            // credentials: "include",
             authorization: authToken ? `Bearer ${authToken}` : "",
           }
         },
